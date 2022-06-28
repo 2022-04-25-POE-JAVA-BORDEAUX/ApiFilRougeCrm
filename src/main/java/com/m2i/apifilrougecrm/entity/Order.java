@@ -1,11 +1,22 @@
 package com.m2i.apifilrougecrm.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="orders")
 public class Order {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name="typePresta")
     private String typePresta;
+    @Column(name="designation")
     private String designation;
+    @Column(name="nbDays")
     private int nbDays;
+    @Column(name = "unitPrice")
     private float unitPrice;
 
     //private state;
