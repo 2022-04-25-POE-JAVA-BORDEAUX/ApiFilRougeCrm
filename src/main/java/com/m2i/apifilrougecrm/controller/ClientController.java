@@ -47,8 +47,7 @@ public class ClientController {
             return ResponseEntity.status(HttpStatus.OK).body(clientDTO);
         }
         else {
-            // TODO retourner un 404
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();  // retourne un 404
         }
     }
 
