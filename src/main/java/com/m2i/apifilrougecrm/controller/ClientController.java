@@ -7,6 +7,7 @@ import com.m2i.apifilrougecrm.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,8 +17,14 @@ public class ClientController {
     ClientService clientService;
 
     @GetMapping("clients")
-    public List<Client> getClients() {
-        return clientService.getAllClients();
+    public List<ClientDTO> getClients() {
+        List<Client> clients = clientService.getAllClients();
+        List<ClientDTO> clientsDTO = new ArrayList<>();
+        for(Client client : clients){
+            ClientDTO clientDTO = ClientMapper.buildClientDTO(client);
+            clientsDTO.add(clientDTO);
+        }
+        return clientsDTO;
     }
 
     @PostMapping("clients")
