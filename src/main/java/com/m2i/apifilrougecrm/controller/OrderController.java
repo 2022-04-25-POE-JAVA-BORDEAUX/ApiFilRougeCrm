@@ -1,6 +1,8 @@
 package com.m2i.apifilrougecrm.controller;
 
 
+import com.m2i.apifilrougecrm.dto.OrderDTO;
+import com.m2i.apifilrougecrm.dto.OrderMapper;
 import com.m2i.apifilrougecrm.entity.Order;
 import com.m2i.apifilrougecrm.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +29,11 @@ public class OrderController {
     }
 
     @GetMapping("orders/{id}")
-    public Order getOrder(@PathVariable("id") Long id) {
-        return orderService.getOrder(id);
+    public OrderDTO getOrder(@PathVariable("id") Long id) {
+
+        Order order = orderService.getOrder(id);
+        OrderDTO orderDTO = OrderMapper.buildOrderDTO(order);
+        return orderDTO;
     }
 
     @PutMapping("orders/{id}")
