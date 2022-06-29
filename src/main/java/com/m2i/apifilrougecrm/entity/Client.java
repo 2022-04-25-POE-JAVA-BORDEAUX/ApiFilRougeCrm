@@ -72,11 +72,11 @@ public class Client {
         this.email = email;
     }
 
-    public String getTelephone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setTelephone(String phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
