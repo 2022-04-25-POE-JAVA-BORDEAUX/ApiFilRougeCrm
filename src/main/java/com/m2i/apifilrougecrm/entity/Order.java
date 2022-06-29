@@ -1,5 +1,7 @@
 package com.m2i.apifilrougecrm.entity;
 
+import ch.qos.logback.core.net.server.Client;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,7 +22,7 @@ public class Order {
     private float unitPrice;
 
     //private state;
-    // private client;
+    //private Client client;
 
 
     public Order() {
