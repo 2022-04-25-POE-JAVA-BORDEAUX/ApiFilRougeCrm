@@ -5,10 +5,13 @@ import com.m2i.apifilrougecrm.dto.ClientMapper;
 import com.m2i.apifilrougecrm.entity.Client;
 import com.m2i.apifilrougecrm.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ClientController {
@@ -34,10 +37,19 @@ public class ClientController {
     }
 
     @GetMapping("clients/{id}")
-    public ClientDTO getClient(@PathVariable("id") Long id){
-        Client client =  clientService.getClient(id);
-        ClientDTO clientDTO = ClientMapper.buildClientDTO(client);
-        return clientDTO;
+    public ResponseEntity<ClientDTO> getClient(@PathVariable("id") Long id){
+
+        Optional<Client> clientOptional =  clientService.getClient(id);
+
+        if(clientOptional.isPresent()) {
+            Client client = clientOptional.get();
+            ClientDTO clientDTO = ClientMapper.buildClientDTO(client);
+            return ResponseEntity.status(HttpStatus.OK).body(clientDTO);
+        }
+        else {
+            // TODO retourner un 404
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("clients/{id}")

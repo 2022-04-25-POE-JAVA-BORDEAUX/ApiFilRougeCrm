@@ -38,7 +38,7 @@ public class OrderController {
     public void createOrder(@RequestBody OrderDTO orderDTO) {
 
         Long clientId = orderDTO.getClient().getId();
-        Client client = clientService.getClient(clientId);
+        Client client = clientService.getClient(clientId).get();//ATTENTION
         Order order = OrderMapper.buildOrder(orderDTO, client);
         orderService.createOrder(order);
     }
@@ -54,7 +54,7 @@ public class OrderController {
     @PutMapping("orders/{id}")
     public void updateOrder(@RequestBody OrderDTO orderDTO) {
         Long clientId = orderDTO.getClient().getId();
-        Client client = clientService.getClient(clientId);
+        Client client = clientService.getClient(clientId).get();//ATTENTION
         Order order = OrderMapper.buildOrder(orderDTO, client);
 
         orderService.updateOrder(order);

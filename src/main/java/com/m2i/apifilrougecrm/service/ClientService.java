@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -22,8 +23,8 @@ public class ClientService {
         clientRepository.save(client);
     }
 
-    public Client getClient(Long id) {
-        return clientRepository.findById(id).get();
+    public Optional<Client> getClient(Long id) {
+        return clientRepository.findById(id);
     }
 
     public void updateClient(Client client){
