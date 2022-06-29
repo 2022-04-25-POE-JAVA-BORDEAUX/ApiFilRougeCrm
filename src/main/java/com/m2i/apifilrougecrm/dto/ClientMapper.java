@@ -31,4 +31,32 @@ public class ClientMapper {
 
         return clientDTO;
     }
+
+    public static Client buildClient(ClientDTO clientDTO){
+
+        Client client = new Client();
+        client.setId(clientDTO.getId());
+        client.setCompanyName(clientDTO.getCompanyName());
+        client.setFirstName(clientDTO.getFirstName());
+        client.setLastName(clientDTO.getLastName());
+        client.setEmail(clientDTO.getEmail());
+        client.setPhone(clientDTO.getPhone());
+        client.setAddress(clientDTO.getAddress());
+        client.setZipCode(clientDTO.getZipCode());
+        client.setCity(clientDTO.getCity());
+        client.setCountry(clientDTO.getCountry());
+
+        switch (clientDTO.getState()){
+            case "INACTIVE":
+                client.setState(0);
+                break;
+            case "ACTIVE":
+                client.setState(1);
+                break;
+            default:
+                client.setState(0);
+        }
+
+        return client;
+    }
 }
