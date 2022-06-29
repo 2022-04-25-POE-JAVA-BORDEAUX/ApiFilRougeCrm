@@ -24,12 +24,17 @@ public class ClientController {
     }
 
     @GetMapping("clients/{id}")
-    public Client getClient(@PathVariable Long id){
+    public Client getClient(@PathVariable("id") Long id){
         return clientService.getClient(id);
     }
 
     @PutMapping("clients/{id}")
     public void updateClient(@RequestBody Client client){
         clientService.updateClient(client);
+    }
+
+    @DeleteMapping("clients/{id}")
+    public void deleteClient(@PathVariable("id") Long id){
+        clientService.deleteClient(id);
     }
 }
