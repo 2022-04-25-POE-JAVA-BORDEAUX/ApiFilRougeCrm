@@ -52,7 +52,11 @@ public class OrderController {
     }
 
     @PutMapping("orders/{id}")
-    public void updateOrder(@RequestBody Order order) {
+    public void updateOrder(@RequestBody OrderDTO orderDTO) {
+        Long clientId = orderDTO.getClient().getId();
+        Client client = clientService.getClient(clientId);
+        Order order = OrderMapper.buildOrder(orderDTO, client);
+
         orderService.updateOrder(order);
     }
 
