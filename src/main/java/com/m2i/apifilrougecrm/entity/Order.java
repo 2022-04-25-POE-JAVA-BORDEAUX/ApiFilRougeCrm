@@ -1,7 +1,5 @@
 package com.m2i.apifilrougecrm.entity;
 
-import ch.qos.logback.core.net.server.Client;
-
 import javax.persistence.*;
 
 @Entity
@@ -22,7 +20,10 @@ public class Order {
     private float unitPrice;
 
     //private state;
-    //private Client client;
+
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name="clientId")
+    private Client client;
 
 
     public Order() {
@@ -74,5 +75,13 @@ public class Order {
 
     public void setUnitPrice(float unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }
