@@ -19,10 +19,11 @@ public class Order {
     @Column(name = "unitPrice")
     private float unitPrice;
 
-    //private state;
+    private int state;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne //(cascade = {CascadeType.ALL})
     @JoinColumn(name="clientId")
+//    @JoinTable(name = "clients")
     private Client client;
 
 
@@ -83,5 +84,13 @@ public class Order {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }
