@@ -19,7 +19,7 @@ public class Order {
     @Column(name = "unitPrice")
     private float unitPrice;
 
-    private int state;
+    private int state; // CANCELLED:0 OPTION:1 CONFIRMED:2
 
     @ManyToOne //(cascade = {CascadeType.ALL})
     @JoinColumn(name="clientId")

@@ -1,35 +1,18 @@
-package com.m2i.apifilrougecrm.entity;
+package com.m2i.apifilrougecrm.dto;
 
-import javax.persistence.*;
+public class ClientDTO {
 
-@Entity
-@Table(name="clients")
-public class Client {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name="companyName")
     private String companyName;
-    @Column(name="firstName")
     private String firstName;
-    @Column(name="lastName")
     private String lastName;
-    @Column(name="email")
     private String email;
-    @Column(name="phone")
     private String phone;
-    @Column(name="address")
     private String address;
-    @Column(name="zipCode")
     private String zipCode;
-    @Column(name="city")
     private String city;
-    @Column(name="country")
     private String country;
-    @Column(name="state")
-    private int state;  //  INACTIVE:0    ACTIVE:1
+    private String state;
 
 
     public Long getId() {
@@ -112,11 +95,11 @@ public class Client {
         this.country = country;
     }
 
-    public int getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(int state) {
+    public void setState(String state) {
         this.state = state;
     }
 }
