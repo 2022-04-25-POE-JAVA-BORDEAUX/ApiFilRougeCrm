@@ -23,7 +23,6 @@ public class Order {
 
     @ManyToOne //(cascade = {CascadeType.ALL})
     @JoinColumn(name="clientId")
-//    @JoinTable(name = "clients")
     private Client client;
 
 

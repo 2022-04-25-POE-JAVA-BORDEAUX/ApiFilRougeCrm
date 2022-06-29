@@ -31,4 +31,9 @@ public class OrderController {
         return orderService.getOrder(id);
     }
 
+    @PutMapping("orders/{id}")
+    public void updateOrder(@RequestBody Order order) {
+        orderService.updateOrder(order);
+    }
+
 }
