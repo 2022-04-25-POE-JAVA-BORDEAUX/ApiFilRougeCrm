@@ -14,7 +14,7 @@ public class OrderDTO {
     private float unitPrice;
     private String state; // CANCELLED:0 OPTION:1 CONFIRMED:2
 
-    private ClientDTO clientDTO;
+    private ClientDTO client;
 
     public OrderDTO() {
 
@@ -67,12 +67,12 @@ public class OrderDTO {
         this.unitPrice = unitPrice;
     }
 
-    public ClientDTO getClientDTO() {
-        return clientDTO;
+    public ClientDTO getClient() {
+        return client;
     }
 
-    public void setClientDTO(ClientDTO clientDTO) {
-        this.clientDTO = clientDTO;
+    public void setClient(ClientDTO clientDTO) {
+        this.client = clientDTO;
     }
 
     public String getState() {

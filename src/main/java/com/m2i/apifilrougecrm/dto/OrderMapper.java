@@ -13,11 +13,11 @@ public class OrderMapper {
         orderDTO.setTypePresta(order.getTypePresta());
         orderDTO.setDesignation(order.getDesignation());
         orderDTO.setNbDays(order.getNbDays());
-        orderDTO.setUnitPrice(orderDTO.getUnitPrice());
+        orderDTO.setUnitPrice(order.getUnitPrice());
 
         Client client = order.getClient();
         ClientDTO clientDTO = ClientMapper.buildClientDTO(client);
-        orderDTO.setClientDTO(clientDTO);
+        orderDTO.setClient(clientDTO);
 
         switch(order.getState()) {
             case 0:
@@ -34,5 +34,35 @@ public class OrderMapper {
         }
 
         return orderDTO;
+    }
+
+
+    public static Order buildOrder(OrderDTO orderDTO, Client client){
+
+        Order order = new Order();
+
+        order.setId(orderDTO.getId());
+        order.setTypePresta(orderDTO.getTypePresta());
+        order.setDesignation(orderDTO.getDesignation());
+        order.setNbDays(orderDTO.getNbDays());
+        order.setUnitPrice(orderDTO.getUnitPrice());
+
+        order.setClient(client);
+
+        switch(orderDTO.getState()) {
+            case "CANCELLED":
+                order.setState(0);
+                break;
+            case "OPTION":
+                order.setState(1);
+                break;
+            case "CONFIRMED":
+                order.setState(2);
+                break;
+            default:
+                order.setState(0);
+        }
+
+        return order;
     }
 }

@@ -3,7 +3,9 @@ package com.m2i.apifilrougecrm.controller;
 
 import com.m2i.apifilrougecrm.dto.OrderDTO;
 import com.m2i.apifilrougecrm.dto.OrderMapper;
+import com.m2i.apifilrougecrm.entity.Client;
 import com.m2i.apifilrougecrm.entity.Order;
+import com.m2i.apifilrougecrm.service.ClientService;
 import com.m2i.apifilrougecrm.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +19,27 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("orders")
-    public List<Order> getOrders(){
+    @Autowired
+    private ClientService clientService;
 
-        return orderService.getOrders();
+
+    @GetMapping("orders")
+    public List<OrderDTO> getOrders(){
+        List<Order> orders = orderService.getOrders();
+        List<OrderDTO> ordersDTO = new ArrayList<>();
+        for(Order order : orders){
+            OrderDTO orderDTO = OrderMapper.buildOrderDTO(order);
+            ordersDTO.add(orderDTO);
+        }
+        return ordersDTO;
     }
 
     @PostMapping("orders")
-    public void createOrder(@RequestBody Order order) {
+    public void createOrder(@RequestBody OrderDTO orderDTO) {
+
+        Long clientId = orderDTO.getClient().getId();
+        Client client = clientService.getClient(clientId);
+        Order order = OrderMapper.buildOrder(orderDTO, client);
         orderService.createOrder(order);
     }
 
