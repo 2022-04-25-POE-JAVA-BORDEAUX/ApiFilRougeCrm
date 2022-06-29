@@ -22,4 +22,7 @@ public class ClientService {
         clientRepository.save(client);
     }
 
+    public Client getClient(Long id) {
+        return clientRepository.findById(id).get();
+    }
 }
